@@ -1,42 +1,78 @@
 package jakubziarko.obiektowe.projekt1;
 
 import java.io.*;
+import java.util.List;
+import java.util.Iterator;
 
 public class TxtAnalizer {
 
     public void analizeDocument(File file) throws IOException {
+
+        //PLIKI
         Document document = new Document(file.getName(), 1, "");
         BufferedReader in = null;
-
         in = new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF-8"));
+        //PLIKI KONIEC
 
+        //PRZEPISANIE WSTEPU JESLI ISTNIEJE
         String str;
-        while ((str = in.readLine()) != null && !str.startsWith("Art.") && !str.startsWith("DZIAŁ") && !str.startsWith("Rozdział")){
-            System.out.println(str);
+        String strOut="";
+        while ((str = in.readLine()) != null && !str.startsWith("DZIAŁ") && !str.startsWith("Rozdział")){
+            strOut=strOut.concat(str);
+            //System.out.println(stro);
+            if (strOut.endsWith("-")){
+                strOut=strOut.substring(0,strOut.length()-1);
+            }
+            else strOut=strOut.concat(" ");
         }
+        document.addText(strOut);
+        //PRZEPISANIE WSTEPU JESLI ISTNIEJE KONIEC
 
+
+        /**
+         * Jeśli następną liniką jest Rozdział to zakładm że cały dokument jest wielkim DZIAŁEM 1, i zaczynam realizować
+         * sprawdzanie kolejnych rodziałów. Jeśli nie to zaczynam zliczać DZIAŁY i wpisywać ich tekst;
+         */
+        if (str.startsWith("Rozdział")){
+            Section section = new Section(1,"");
+            document.getList().add(section);
+            analizeSection(0,in,str, (Section)document.getList().get(0));
+        }else{
+            int numberSections=1;
+            while ((str = in.readLine()) != null) {
+                if (str.startsWith("DZIAŁ")) {
+                    Section section = new Section(numberSections,"");
+                    document.getList().add(section);
+                    analizeSection(numberSections,in,str,(Section)document.getList().get(numberSections-1));
+                    numberSections++;
+                }
+            }
+        }
     }
-    private void analizeSections(){
 
+
+
+    private void analizeSection(int sectionNumber, BufferedReader in, String str, Section section){
+        analizeChapter();
     }
 
-    private void analizeChapters(){
-
+    private void analizeChapter(){
+        analizeArticle();
     }
 
-    private void analizeArticles(){
-
+    private void analizeArticle(){
+        analizePoint();
     }
 
-    private void analizePoints(){
-
+    private void analizePoint(){
+        analizeSubPoint();
     }
 
-    private void analizeSubPoints(){
-
+    private void analizeSubPoint(){
+        analizeLetter();
     }
 
-    private void analizeLetters(){
+    private void analizeLetter(){
 
     }
     /**

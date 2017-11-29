@@ -17,7 +17,7 @@ public class Article extends AbstractDocument{
         super.number=articleNumber;
     }
 
-    private void addPoint(int pointNumber, String pointText){
+    public void addPoint(int pointNumber, String pointText){
         super.list.add(new Point(pointNumber,pointText));
     }
 }

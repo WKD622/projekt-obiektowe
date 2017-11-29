@@ -17,7 +17,7 @@ public class Chapter extends AbstractDocument {
         super.text=chapterText;
     }
 
-    private void addArticle(int articleNumber, String articleText){
+    public void addArticle(int articleNumber, String articleText){
         super.list.add(new Article(articleNumber,articleText));
     }
 }

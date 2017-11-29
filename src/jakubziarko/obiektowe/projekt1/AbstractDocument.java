@@ -27,6 +27,6 @@ public abstract class AbstractDocument implements Component{
         list.add(component);
     }
     public void addText(String text){
-        this.text.concat(text);
+        this.text=this.text.concat(text);
     }
 }

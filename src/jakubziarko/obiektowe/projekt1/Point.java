@@ -16,7 +16,7 @@ public class Point extends AbstractDocument{
         super.text=pointText;
     }
 
-    private void addSubPoint(int subPointNumber, String subPointText){
+    public void addSubPoint(int subPointNumber, String subPointText){
         super.list.add(new Point(subPointNumber,subPointText));
     }
 }

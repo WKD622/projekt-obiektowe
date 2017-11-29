@@ -17,7 +17,7 @@ public class SubPoint extends AbstractDocument{
         super.text=subPointText;
     }
 
-    void addLetter(int letterNumber, String letterText){
+    public void addLetter(int letterNumber, String letterText){
         super.list.add(new Letter(letterNumber,letterText));
     }
 }

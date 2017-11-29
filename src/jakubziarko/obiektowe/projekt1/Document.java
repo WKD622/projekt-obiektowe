@@ -12,12 +12,10 @@ package jakubziarko.obiektowe.projekt1;
 
 public class Document extends AbstractDocument {
     private String name;
-    private String introduction;
 
     public String getName() {
         return this.name;
     }
-    public String getIntroduction() {return this.introduction;}
 
     Document(String documentName,int documentNumber, String documentText){
         this.name=documentName;
@@ -25,7 +23,7 @@ public class Document extends AbstractDocument {
         super.text=documentText;
     }
 
-    private void addSection(int sectionNumber, String sectionText){
+    public void addSection(int sectionNumber, String sectionText){
         super.add(new Section(sectionNumber,sectionText));
     }
 }

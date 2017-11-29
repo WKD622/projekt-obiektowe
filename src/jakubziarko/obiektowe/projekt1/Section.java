@@ -16,7 +16,7 @@ public class Section extends AbstractDocument{
         super.number=sectionNumber;
         super.text=sectionText;
     }
-    void addChapter(int chapterNumber, String chapterText){
+    public void addChapter(int chapterNumber, String chapterText){
         super.add(new Chapter(chapterNumber,chapterText));
     }
 }
