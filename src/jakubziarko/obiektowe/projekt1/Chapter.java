@@ -10,14 +10,10 @@ package jakubziarko.obiektowe.projekt1;
  *                      Letters [u] a) b) c)
  */
 
-public class Chapter extends AbstractDocument {
+public class Chapter extends AbstractComponent<Article> {
 
-    Chapter(int chapterNumber, String chapterText){
-        super.number=chapterNumber;
-        super.text=chapterText;
+    Chapter(){
+        super();
     }
 
-    public void addArticle(int articleNumber, String articleText){
-        super.list.add(new Article(articleNumber,articleText));
-    }
 }

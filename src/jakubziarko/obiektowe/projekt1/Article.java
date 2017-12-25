@@ -10,14 +10,9 @@ package jakubziarko.obiektowe.projekt1;
  *                      Letters [u] a) b) c)
  */
 
-public class Article extends AbstractDocument{
+public class Article extends AbstractComponent<Point> {
 
-    Article(int articleNumber,String articleText){
-        super.text=articleText;
-        super.number=articleNumber;
-    }
-
-    public void addPoint(int pointNumber, String pointText){
-        super.list.add(new Point(pointNumber,pointText));
+    public Article() {
+        super();
     }
 }

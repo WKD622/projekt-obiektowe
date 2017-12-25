@@ -10,14 +10,9 @@ package jakubziarko.obiektowe.projekt1;
  *                      Letters [u] a) b) c)
  */
 
-public class SubPoint extends AbstractDocument{
+public class SubPoint extends AbstractComponent<Letter>{
 
-    SubPoint(int subPointNumber, String subPointText){
-        super.number=subPointNumber;
-        super.text=subPointText;
-    }
-
-    public void addLetter(int letterNumber, String letterText){
-        super.list.add(new Letter(letterNumber,letterText));
+    SubPoint(){
+        super();
     }
 }

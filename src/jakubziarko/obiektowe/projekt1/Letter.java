@@ -10,9 +10,8 @@ package jakubziarko.obiektowe.projekt1;
  *                      Letters [u] a) b) c)
  */
 
-public class Letter extends AbstractDocument{
-    Letter(int letterNumber, String letterText){
-        super.number=letterNumber;
-        super.text=letterText;
+public class Letter extends AbstractComponent{
+    Letter(){
+        super();
     }
 }

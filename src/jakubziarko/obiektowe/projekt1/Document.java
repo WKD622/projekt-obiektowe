@@ -10,20 +10,15 @@ package jakubziarko.obiektowe.projekt1;
  *                      Letters [u] a) b) c)
  */
 
-public class Document extends AbstractDocument {
+public class Document extends AbstractComponent<Section> {
     private String name;
 
     public String getName() {
         return this.name;
     }
 
-    Document(String documentName,int documentNumber, String documentText){
+    Document(String documentName){
+        super();
         this.name=documentName;
-        super.number=documentNumber;
-        super.text=documentText;
-    }
-
-    public void addSection(int sectionNumber, String sectionText){
-        super.add(new Section(sectionNumber,sectionText));
     }
 }

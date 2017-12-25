@@ -10,13 +10,9 @@ package jakubziarko.obiektowe.projekt1;
  *                      Letters [u] a) b) c)
  */
 
-public class Section extends AbstractDocument{
+public class Section extends AbstractComponent<Chapter>{
 
-    Section(int sectionNumber, String sectionText){
-        super.number=sectionNumber;
-        super.text=sectionText;
-    }
-    public void addChapter(int chapterNumber, String chapterText){
-        super.add(new Chapter(chapterNumber,chapterText));
+    Section() {
+        super();
     }
 }

@@ -1,0 +1,9 @@
+DZIAŁ I 
+<tekst działu 1>
+Rozdział 1
+<tekst rozdziału 1>
+Art. 1.
+<tekst artykułu 1>
+1. <tekst punktu 1>
+2. <tekst punktu 2>
+3. <tekst punktu 3>
