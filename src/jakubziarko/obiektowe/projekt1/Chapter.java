@@ -16,4 +16,8 @@ public class Chapter extends AbstractComponent<Article> {
         super();
     }
 
+    @Override
+    public String toString() {
+        return "Rozdział " + this.getNumber();
+    }
 }

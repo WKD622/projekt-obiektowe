@@ -21,4 +21,30 @@ public class Document extends AbstractComponent<Section> {
         super();
         this.name=documentName;
     }
+
+    @Override
+    public String toString() {
+        return "Dokument";
+    }
+
+    public void getTableOfContest(){
+        int numberOfChars = 17;
+        System.out.println("TABLE OF CONTEST: " + this.name + "\n");
+        for (Section sec : list){
+            if (sec.getNumber() != "EMPTY"){
+                System.out.print("  " + sec.toString());
+                for (int i =0; i < numberOfChars - sec.toString().length(); i++) System.out.print(".");
+                System.out.print(sec.getText());
+                System.out.print("\n\n");
+            }
+            for (Chapter chap : sec.getList()){
+                if (chap.getNumber() != "EMPTY") System.out.print("          " + chap.toString());
+                for (int i =0; i < numberOfChars - chap.toString().length(); i++) System.out.print(" ");
+                System.out.print(chap.getText());
+                System.out.print("\n");
+            }
+            System.out.print("\n");
+        }
+        System.out.println("\n");
+    }
 }

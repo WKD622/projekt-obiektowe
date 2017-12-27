@@ -10,36 +10,32 @@
 
 package jakubziarko.obiektowe.projekt1;
 
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.Scanner;
 
 public class Parser {
     private final String sectionRegex = "DZIAŁ\\s*[A-Za-z]*";
     private final String chapterRegex = "Rozdział\\s*[A-Z1-9a-z]*";
     private final String articleRegex = "Art\\.\\s*[0-9a-z]*";
-    private final String pointRegex = "\\d+\\w*\\.\\s(.)+";
+    private final String pointRegex = "[0-9]+\\.";
+    private final String subPointRegex = "[0-9]+[a-z]?\\)";
+    private final String letterRegex = "[a-z]\\)";
+    private String lastReadLine = "";
+    private String dividedWord = "";
     private Scanner scanner;
-    private String endOfLine = "";
-    int i = 0;
 
-    public Parser(File file) throws FileNotFoundException {
-        this.scanner = new Scanner(file);
+    public Parser(){
     }
 
-    public Parser(InputStream stream) {
-        this.scanner = new Scanner(stream);
-    }
 
     public Document parseDocument(File file) throws IOException {
+        this.scanner = new Scanner(file);
         Document document = new Document(file.getName());
         document.setText(parseTextTill(chapterRegex + "|" + sectionRegex, ""));
 
-        System.out.println("INTRODUCTION:\n" + document.getText());
+        //System.out.println("INTRODUCTION:\n" + document.getText());
         parseSections(document);
         scanner.close();
         return document;
@@ -52,10 +48,11 @@ public class Parser {
             if (scanner.hasNext(sectionRegex)) {
                 section.setNumber(scanner.nextLine().replaceAll("(DZIAŁ)\\s*([1-9A-Z]*)", "$2"));
                 section.setText(parseTextTill(chapterRegex + "|" + sectionRegex + "|" + articleRegex, ""));
+                section.setText(section.getText().replaceAll("\n",", "));
             } else {
                 section.setNumber("EMPTY");
             }
-            System.out.println("\n\nSECTION: " + section.getNumber() + "\n\n" + section.getText());
+            //System.out.println("\n\nSECTION: " + section.getNumber() + "\n\n" + section.getText());
             parseChapters(section);
         }
     }
@@ -67,10 +64,11 @@ public class Parser {
             if (scanner.hasNext(chapterRegex)) {
                 chapter.setNumber(scanner.nextLine().replaceAll("(Rozdział)\\s*([1-9a-zA-Z]*)", "$2"));
                 chapter.setText(parseTextTill(chapterRegex + "|" + sectionRegex + "|" + articleRegex, ""));
+                chapter.setText(chapter.getText().replaceAll("\n"," "));
             } else {
                 chapter.setNumber("EMPTY");
             }
-            System.out.println("\n\nCHAPTER: " + chapter.getNumber() + "\n\n" + chapter.getText());
+            //System.out.println("\n\nCHAPTER: " + chapter.getNumber() + "\n\n" + chapter.getText());
             parseArticles(chapter);
         }
     }
@@ -84,49 +82,127 @@ public class Parser {
                 string = scanner.nextLine();
                 article.setNumber(string.replaceAll("(Art\\.)\\s*([0-9a-z]+)\\.(.*)", "$2"));
                 if (string.length() - article.getNumber().length() > 6)
-                    article.setText(parseTextTill("(" + chapterRegex + ")|(" + sectionRegex + ")|(" + articleRegex + ")|(" + pointRegex + ")", string.replaceAll("(Art\\.)\\s*([0-9a-z]+)\\.\\s(.*)?", "$3")));
+                    article.setText(parseTextTill(chapterRegex + "|" + sectionRegex + "|" + articleRegex + "|" + pointRegex + "|" + subPointRegex, string.replaceAll("(Art\\.)\\s*([0-9a-z]+)\\.\\s(.*)?", "$3")));
                 else
-                    article.setText(parseTextTill("(" + chapterRegex + ")|(" + sectionRegex + ")|(" + articleRegex + ")|(" + pointRegex + ")", ""));
+                    article.setText(parseTextTill(chapterRegex + "|" + sectionRegex + "|" + articleRegex + "|" + pointRegex + "|" + subPointRegex, ""));
             } else {
                 article.setNumber("EMPTY");
+                scanner.nextLine();
             }
-            System.out.println("\n\nARTICLE: " + article.getNumber() + "\n\n" + article.getText());
+            //System.out.println("\n\nARTICLE: " + article.getNumber() + "\n\n" + article.getText());
             parsePoints(article);
         }
     }
 
     private void parsePoints(Article article) throws IOException {
-        /*while (!scanner.hasNext(sectionRegex) &&
+        if (lastReadLine.matches("[0-9]\\. (.)*")){
+            Point point = new Point();
+            article.add(point);
+            point.setNumber(lastReadLine.replaceAll("([0-9]+)\\.(.*)", "$1").trim());
+            point.setText(parseTextTill(chapterRegex + "|" + sectionRegex + "|" + articleRegex + "|" + pointRegex + "|" + subPointRegex, lastReadLine.replaceAll("([0-9]+)\\.(.*)", "$2").trim()));
+            //System.out.println("\n\nPoint: " + point.getNumber() + "\n\n" + point.getText());
+            lastReadLine = "";
+            parseSubPoints(point);
+        }
+        while (!scanner.hasNext(sectionRegex) &&
                 !scanner.hasNext(chapterRegex) &&
                 !scanner.hasNext(articleRegex) &&
-                !scanner.hasNext(pointRegex) &&
                 scanner.hasNextLine()) {
             String string = "";
             Point point = new Point();
             article.add(point);
             if (scanner.hasNext(pointRegex)) {
                 string = scanner.nextLine();
-                point.setNumber(string.replaceAll("([1-9]+)\\. (.*)", "$1"));
-                point.setText(parseTextTill(chapterRegex + "|" + sectionRegex + "|" + articleRegex + "|" + pointRegex, string.replaceAll("([1-9]+)\\.(.+)", "$2")));
+                point.setNumber(string.replaceAll("([0-9]+)\\.(.*)", "$1"));
+                point.setText(parseTextTill(chapterRegex + "|" + sectionRegex + "|" + articleRegex + "|" + pointRegex + "|" + subPointRegex, string.replaceAll("([0-9]+)\\.(.+)", "$2").trim()));
             }
-            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n    Point: " + point.getNumber() + "\n\n" + point.getText());
-        }*/
+            else{
+                point.setNumber("EMPTY");
+            }
+            //System.out.println("\n\nPoint: " + point.getNumber() + "\n\n" + point.getText());
+            parseSubPoints(point);
+        }
     }
 
-    private void parsePointsAndSubPoints(String text) {
-
+    private void parseSubPoints(Point point) {
+        while (!scanner.hasNext(sectionRegex)  &&
+                !scanner.hasNext(chapterRegex) &&
+                !scanner.hasNext(articleRegex) &&
+                !scanner.hasNext(pointRegex)   &&
+                scanner.hasNextLine()){
+            String string = "";
+            SubPoint subPoint = new SubPoint();
+            point.add(subPoint);
+            if(scanner.hasNext(subPointRegex)){
+                string = scanner.nextLine();
+                subPoint.setNumber(string.replaceAll("([0-9]+[a-z]?)\\) (.*)","$1"));
+                subPoint.setText(parseTextTill(chapterRegex + "|" + sectionRegex + "|" + articleRegex + "|" + pointRegex + "|" + subPointRegex + "|" + letterRegex, string.replaceAll("([0-9]+[a-z]?)\\) (.*)","$2")));
+            }
+            else {
+                subPoint.setNumber("EMPTY");
+            }
+            //System.out.println("\n\nSubpoint: " + subPoint.getNumber() + "\n\n" + subPoint.getText());
+            parseLetters(subPoint);
+        }
     }
 
+    private void parseLetters(SubPoint subPoint){
+        while (!scanner.hasNext(sectionRegex)  &&
+                !scanner.hasNext(chapterRegex) &&
+                !scanner.hasNext(articleRegex) &&
+                !scanner.hasNext(pointRegex)   &&
+                !scanner.hasNext(subPointRegex) &&
+                scanner.hasNextLine()){
+            String string = "";
+            Letter letter = new Letter();
+            subPoint.add(letter);
+            if(scanner.hasNext(letterRegex)){
+                string = scanner.nextLine();
+                letter.setNumber(string.replaceAll("([a-z])\\) (.*)","$1"));
+                letter.setText(parseTextTill(chapterRegex + "|" + sectionRegex + "|" + articleRegex + "|" + pointRegex + "|" + subPointRegex + "|" + letterRegex, string.replaceAll("([a-z])\\) (.*)","$2")));
+            }
+            else {
+                letter.setNumber("EMPTY");
+                scanner.nextLine();
+            }
+            //System.out.println("\n\nLetter: " + letter.getNumber() + "\n\n" + letter.getText());
+        }
+    }
 
     private String parseTextTill(String regex, String text) {
         StringBuilder ret = new StringBuilder(256);
-        if (text.matches("[1-9]+\\. .+")) return "EMPTY";
-        ret.append(text);
-        while (!scanner.hasNext(regex) && scanner.hasNextLine()) {
-            ret.append("\n");
-            ret.append(scanner.nextLine());
+        if (text.matches("[1-9]\\. (.)*")){
+            lastReadLine = text;
+            return "";
         }
+        if (text != "") {
+            if (text.endsWith("-")){
+                dividedWord = text.replaceAll("(.*) ([a-zA-Złęćźńąóż]+)-","$2");
+                text = text.replaceAll(" [a-zA-Złęćźńąóż]+-","");
+            }
+            ret.append(text);
+            ret.append("\n");
+            if (dividedWord != "") {
+                ret.append(dividedWord);
+                dividedWord = "";
+            }
+        }
+        while (!scanner.hasNext(regex) && scanner.hasNextLine()) {
+            String string = scanner.nextLine();
+            if (!string.startsWith("©Kancelaria Sejmu") && !string.matches("[0-9]{4}-[0-9]{2}-[0-9]{2}")) {
+                if (string.endsWith("-")){
+                    dividedWord = string.replaceAll("(.*) ([a-zA-Złęćźńąóż]+)-","$2");
+                    string=string.replaceAll(" [a-zA-Złęćźńąóż]+-","");
+                }
+                ret.append(string);
+                ret.append("\n");
+                if (dividedWord != ""){
+                    ret.append(dividedWord);
+                    dividedWord = "";
+                }
 
+            }
+        }
         return ret.toString();
     }
 

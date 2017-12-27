@@ -14,4 +14,9 @@ public class Letter extends AbstractComponent{
     Letter(){
         super();
     }
+
+    @Override
+    public String toString() {
+        return "Litera " + this.getNumber();
+    }
 }

@@ -5,5 +5,7 @@ Rozdział 1
 Art. 1.
 <tekst artykułu 1>
 1. <tekst punktu 1>
+1) <tekst podpunktu 1>
+2) <tekst podpunktu 2>
 2. <tekst punktu 2>
 3. <tekst punktu 3>

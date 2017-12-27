@@ -15,4 +15,9 @@ public class Section extends AbstractComponent<Chapter>{
     Section() {
         super();
     }
+
+    @Override
+    public String toString() {
+        return "Dział " + this.getNumber();
+    }
 }

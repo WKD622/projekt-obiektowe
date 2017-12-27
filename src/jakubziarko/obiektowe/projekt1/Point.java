@@ -14,4 +14,9 @@ public class Point extends AbstractComponent<SubPoint>{
     Point(){
         super();
     }
+
+    @Override
+    public String toString() {
+        return "Ustęp " + this.getNumber();
+    }
 }
