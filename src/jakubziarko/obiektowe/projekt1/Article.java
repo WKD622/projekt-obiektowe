@@ -18,6 +18,7 @@ public class Article extends AbstractComponent<Point> {
 
     @Override
     public String toString() {
-        return "Artykuł " + this.getNumber();
+        if (this.getNumber().equals("EMPTY")) return "Artykuł -";
+        else return "Artykuł " + this.getNumber();
     }
 }

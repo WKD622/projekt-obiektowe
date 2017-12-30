@@ -18,6 +18,7 @@ public class Section extends AbstractComponent<Chapter>{
 
     @Override
     public String toString() {
-        return "Dział " + this.getNumber();
+        if (this.getNumber().equals("EMPTY")) return "Dział -";
+        else return "Dział " + this.getNumber();
     }
 }

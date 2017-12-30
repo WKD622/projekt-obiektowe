@@ -18,6 +18,7 @@ public class SubPoint extends AbstractComponent<Letter>{
 
     @Override
     public String toString() {
-        return "Punkt " + this.getNumber();
+        if (this.getNumber().equals("EMPTY")) return "Punkt -";
+        else return "Punkt " + this.getNumber();
     }
 }

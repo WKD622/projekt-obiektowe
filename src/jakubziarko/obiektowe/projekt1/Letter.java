@@ -17,6 +17,7 @@ public class Letter extends AbstractComponent{
 
     @Override
     public String toString() {
-        return "Litera " + this.getNumber();
+        if (this.getNumber().equals("EMPTY")) return "Litera -";
+        else return "Litera " + this.getNumber();
     }
 }

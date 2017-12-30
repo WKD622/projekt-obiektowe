@@ -11,22 +11,21 @@
 package jakubziarko.obiektowe.projekt1;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class Parser {
+public class DocumentParser {
     private final String sectionRegex = "DZIAŁ\\s*[A-Za-z]*";
     private final String chapterRegex = "Rozdział\\s*[A-Z1-9a-z]*";
     private final String articleRegex = "Art\\.\\s*[0-9a-z]*";
-    private final String pointRegex = "[0-9]+\\.";
+    private final String pointRegex = "[0-9]+[a-z]?\\.";
     private final String subPointRegex = "[0-9]+[a-z]?\\)";
     private final String letterRegex = "[a-z]\\)";
     private String lastReadLine = "";
     private String dividedWord = "";
     private Scanner scanner;
 
-    public Parser(){
+    public DocumentParser(){
     }
 
 
@@ -34,10 +33,10 @@ public class Parser {
         this.scanner = new Scanner(file);
         Document document = new Document(file.getName());
         document.setText(parseTextTill(chapterRegex + "|" + sectionRegex, ""));
-
         //System.out.println("INTRODUCTION:\n" + document.getText());
         parseSections(document);
         scanner.close();
+        addArticleRangetoChapters(document);
         return document;
     }
 
@@ -67,6 +66,7 @@ public class Parser {
                 chapter.setText(chapter.getText().replaceAll("\n"," "));
             } else {
                 chapter.setNumber("EMPTY");
+                chapter.setText("EMPTY");
             }
             //System.out.println("\n\nCHAPTER: " + chapter.getNumber() + "\n\n" + chapter.getText());
             parseArticles(chapter);
@@ -87,6 +87,7 @@ public class Parser {
                     article.setText(parseTextTill(chapterRegex + "|" + sectionRegex + "|" + articleRegex + "|" + pointRegex + "|" + subPointRegex, ""));
             } else {
                 article.setNumber("EMPTY");
+                article.setText("EMPTY");
                 scanner.nextLine();
             }
             //System.out.println("\n\nARTICLE: " + article.getNumber() + "\n\n" + article.getText());
@@ -95,11 +96,11 @@ public class Parser {
     }
 
     private void parsePoints(Article article) throws IOException {
-        if (lastReadLine.matches("[0-9]\\. (.)*")){
+        if (lastReadLine.matches("[0-9]+[a-z]?\\. (.*)")){
             Point point = new Point();
             article.add(point);
-            point.setNumber(lastReadLine.replaceAll("([0-9]+)\\.(.*)", "$1").trim());
-            point.setText(parseTextTill(chapterRegex + "|" + sectionRegex + "|" + articleRegex + "|" + pointRegex + "|" + subPointRegex, lastReadLine.replaceAll("([0-9]+)\\.(.*)", "$2").trim()));
+            point.setNumber(lastReadLine.replaceAll("([0-9]+[a-z]?)\\. (.*)", "$1").trim());
+            point.setText(parseTextTill(chapterRegex + "|" + sectionRegex + "|" + articleRegex + "|" + pointRegex + "|" + subPointRegex, lastReadLine.replaceAll("([0-9]+[a-z]?)\\. (.*)", "$2")));
             //System.out.println("\n\nPoint: " + point.getNumber() + "\n\n" + point.getText());
             lastReadLine = "";
             parseSubPoints(point);
@@ -113,11 +114,12 @@ public class Parser {
             article.add(point);
             if (scanner.hasNext(pointRegex)) {
                 string = scanner.nextLine();
-                point.setNumber(string.replaceAll("([0-9]+)\\.(.*)", "$1"));
-                point.setText(parseTextTill(chapterRegex + "|" + sectionRegex + "|" + articleRegex + "|" + pointRegex + "|" + subPointRegex, string.replaceAll("([0-9]+)\\.(.+)", "$2").trim()));
+                point.setNumber(string.replaceAll("([0-9]+[a-z]?)\\. (.*)", "$1"));
+                point.setText(parseTextTill(chapterRegex + "|" + sectionRegex + "|" + articleRegex + "|" + pointRegex + "|" + subPointRegex, string.replaceAll("([0-9]+[a-z]?)\\. (.+)", "$2")));
             }
             else{
                 point.setNumber("EMPTY");
+                point.setText("EMPTY");
             }
             //System.out.println("\n\nPoint: " + point.getNumber() + "\n\n" + point.getText());
             parseSubPoints(point);
@@ -140,6 +142,7 @@ public class Parser {
             }
             else {
                 subPoint.setNumber("EMPTY");
+                subPoint.setText("EMPTY");
             }
             //System.out.println("\n\nSubpoint: " + subPoint.getNumber() + "\n\n" + subPoint.getText());
             parseLetters(subPoint);
@@ -163,6 +166,7 @@ public class Parser {
             }
             else {
                 letter.setNumber("EMPTY");
+                letter.setText("EMPTY");
                 scanner.nextLine();
             }
             //System.out.println("\n\nLetter: " + letter.getNumber() + "\n\n" + letter.getText());
@@ -200,10 +204,25 @@ public class Parser {
                     ret.append(dividedWord);
                     dividedWord = "";
                 }
-
             }
         }
         return ret.toString();
+    }
+
+    void addArticleRangetoChapters(Document document){
+        for (Section sec : document.getList()){
+            for (Chapter chap : sec.getList()){
+                boolean first = true;
+                for (Article art : chap.getList()){
+                    String string = art.getNumber().replaceAll("\\p{ASCII}", "");
+                    if (first) {
+                        first = false;
+                        chap.setFirstArticleNumber(art.getNumber());
+                    }
+                    chap.setLastArticleNumber(art.getNumber());
+                }
+            }
+        }
     }
 
 }

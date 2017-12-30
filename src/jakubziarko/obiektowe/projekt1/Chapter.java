@@ -11,13 +11,34 @@ package jakubziarko.obiektowe.projekt1;
  */
 
 public class Chapter extends AbstractComponent<Article> {
+    private String firstArticleNumber;
+    private String lastArticleNumber;
 
     Chapter(){
         super();
+        firstArticleNumber = "";
+        lastArticleNumber = "";
+    }
+
+    public String getFirstArticleNumber() {
+        return firstArticleNumber;
+    }
+
+    public String getLastArticleNumber() {
+        return lastArticleNumber;
+    }
+
+    public void setFirstArticleNumber(String firstArticleNumber) {
+        this.firstArticleNumber = firstArticleNumber;
+    }
+
+    public void setLastArticleNumber(String lastArticleNumber) {
+        this.lastArticleNumber = lastArticleNumber;
     }
 
     @Override
     public String toString() {
-        return "Rozdział " + this.getNumber();
+        if (this.getNumber().equals("EMPTY")) return "Rozdział -";
+        else return "Rozdział " + this.getNumber();
     }
 }

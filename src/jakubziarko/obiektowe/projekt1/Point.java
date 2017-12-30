@@ -17,6 +17,7 @@ public class Point extends AbstractComponent<SubPoint>{
 
     @Override
     public String toString() {
-        return "Ustęp " + this.getNumber();
+        if (this.getNumber().equals("EMPTY")) return "Ustęp -";
+        else return "Ustęp " + this.getNumber();
     }
 }
