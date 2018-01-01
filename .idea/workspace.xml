@@ -1,30 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b8080a3e-e608-4417-9470-59361539276e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/projekt-obiektowe/jakubziarko/obiektowe/projekt1/Parser.class" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/jakubziarko/obiektowe/projekt1/Parser.java" afterPath="$PROJECT_DIR$/src/jakubziarko/obiektowe/projekt1/DocumentParser.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projekt-obiektowe/jakubziarko/obiektowe/projekt1/AbstractComponent.class" afterPath="$PROJECT_DIR$/out/production/projekt-obiektowe/jakubziarko/obiektowe/projekt1/AbstractComponent.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projekt-obiektowe/jakubziarko/obiektowe/projekt1/Article.class" afterPath="$PROJECT_DIR$/out/production/projekt-obiektowe/jakubziarko/obiektowe/projekt1/Article.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projekt-obiektowe/jakubziarko/obiektowe/projekt1/Chapter.class" afterPath="$PROJECT_DIR$/out/production/projekt-obiektowe/jakubziarko/obiektowe/projekt1/Chapter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projekt-obiektowe/jakubziarko/obiektowe/projekt1/Document.class" afterPath="$PROJECT_DIR$/out/production/projekt-obiektowe/jakubziarko/obiektowe/projekt1/Document.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projekt-obiektowe/jakubziarko/obiektowe/projekt1/Letter.class" afterPath="$PROJECT_DIR$/out/production/projekt-obiektowe/jakubziarko/obiektowe/projekt1/Letter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projekt-obiektowe/jakubziarko/obiektowe/projekt1/Point.class" afterPath="$PROJECT_DIR$/out/production/projekt-obiektowe/jakubziarko/obiektowe/projekt1/Point.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projekt-obiektowe/jakubziarko/obiektowe/projekt1/Program.class" afterPath="$PROJECT_DIR$/out/production/projekt-obiektowe/jakubziarko/obiektowe/projekt1/Program.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projekt-obiektowe/jakubziarko/obiektowe/projekt1/Section.class" afterPath="$PROJECT_DIR$/out/production/projekt-obiektowe/jakubziarko/obiektowe/projekt1/Section.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projekt-obiektowe/jakubziarko/obiektowe/projekt1/SubPoint.class" afterPath="$PROJECT_DIR$/out/production/projekt-obiektowe/jakubziarko/obiektowe/projekt1/SubPoint.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/jakubziarko/obiektowe/projekt1/AbstractComponent.java" afterPath="$PROJECT_DIR$/src/jakubziarko/obiektowe/projekt1/AbstractComponent.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/jakubziarko/obiektowe/projekt1/Article.java" afterPath="$PROJECT_DIR$/src/jakubziarko/obiektowe/projekt1/Article.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/jakubziarko/obiektowe/projekt1/Chapter.java" afterPath="$PROJECT_DIR$/src/jakubziarko/obiektowe/projekt1/Chapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/jakubziarko/obiektowe/projekt1/Document.java" afterPath="$PROJECT_DIR$/src/jakubziarko/obiektowe/projekt1/Document.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/jakubziarko/obiektowe/projekt1/Letter.java" afterPath="$PROJECT_DIR$/src/jakubziarko/obiektowe/projekt1/Letter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/jakubziarko/obiektowe/projekt1/Point.java" afterPath="$PROJECT_DIR$/src/jakubziarko/obiektowe/projekt1/Point.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/jakubziarko/obiektowe/projekt1/Program.java" afterPath="$PROJECT_DIR$/src/jakubziarko/obiektowe/projekt1/Program.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/jakubziarko/obiektowe/projekt1/Section.java" afterPath="$PROJECT_DIR$/src/jakubziarko/obiektowe/projekt1/Section.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/jakubziarko/obiektowe/projekt1/SubPoint.java" afterPath="$PROJECT_DIR$/src/jakubziarko/obiektowe/projekt1/SubPoint.java" />
-    </list>
+    <list default="true" id="b8080a3e-e608-4417-9470-59361539276e" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -51,10 +28,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Document.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Document.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/jakubziarko/obiektowe/projekt1/Document.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
+            <state relative-caret-position="1640">
               <caret line="86" column="116" lean-forward="false" selection-start-line="86" selection-start-column="116" selection-end-line="86" selection-end-column="116" />
               <folding />
             </state>
@@ -131,10 +108,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Program.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Program.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/jakubziarko/obiektowe/projekt1/Program.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="453">
+            <state relative-caret-position="1000">
               <caret line="50" column="130" lean-forward="false" selection-start-line="50" selection-start-column="130" selection-end-line="50" selection-end-column="130" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -529,16 +506,15 @@
       <workItem from="1514367047471" duration="6104000" />
       <workItem from="1514395426545" duration="11067000" />
       <workItem from="1514455265493" duration="14171000" />
-      <workItem from="1514543196070" duration="16779000" />
+      <workItem from="1514543196070" duration="17388000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="218491000" />
+    <option name="totallyTimeSpent" value="219100000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="59" y="-5" width="2501" height="1085" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -549,7 +525,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3394683" sideWeight="0.5018888" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29746193" sideWeight="0.49811116" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29746193" sideWeight="0.49811116" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -908,21 +884,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/jakubziarko/obiektowe/projekt1/Document.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1640">
+          <caret line="86" column="116" lean-forward="false" selection-start-line="86" selection-start-column="116" selection-end-line="86" selection-end-column="116" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/jakubziarko/obiektowe/projekt1/Program.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="453">
+        <state relative-caret-position="1000">
           <caret line="50" column="130" lean-forward="false" selection-start-line="50" selection-start-column="130" selection-end-line="50" selection-end-column="130" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/jakubziarko/obiektowe/projekt1/Document.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="86" column="116" lean-forward="false" selection-start-line="86" selection-start-column="116" selection-end-line="86" selection-end-column="116" />
-          <folding />
         </state>
       </provider>
     </entry>
