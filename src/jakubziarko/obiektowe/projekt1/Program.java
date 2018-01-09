@@ -19,7 +19,7 @@ public class Program {
     np. /txt/konstytucja.txt art.67a-113j
     jeśli chcemy wyświetlić konkretny element, np artykuł 5, ustęp 3, punkt 2, litera c wpiszemy
     np. /txt/konstytucja.txt art.5 ust.5 pkt.2 lit.c
-    czasami artykuł nie ma ustępóœ tylko od razu punkty, wtedy po prostu pomijamy ustep, piszemy
+    czasami artykuł nie ma ustępów tylko od razu punkty, wtedy po prostu pomijamy ustep, piszemy
     np. /txt/konstytucja.txt art.5 pkt.2 lit.d
     mozemy tez wyswietlic okreslony ustep,punkt lub artykuł piszac po prostu
     np. /txt/konstytucja.txt art.5 ust.2 pkt.4

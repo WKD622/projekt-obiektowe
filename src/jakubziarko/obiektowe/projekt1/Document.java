@@ -64,23 +64,39 @@ public class Document extends AbstractComponent<Section> {
     }
 
     public void viewRangeOfArticles(String startArticle, String endArticle) {
-        System.out.println("\n" + this.toString().toUpperCase() + "  ARTYKUŁY Z ZAKRESU: " + startArticle + "-" + endArticle + "\n");
         boolean first = false;
+        boolean last = false;
+
         for (Section sec : this.getList()) {
             for (Chapter chap : sec.getList()) {
                 for (Article art : chap.getList()) {
-                    if (art.getNumber().equals(startArticle)){
-                        first = true;
-                    }
-                    if (first){
-                        System.out.println(art.toString() + "\n" + art.getText());
-                        viewAllPointsFor(art);
-                    }
-                    if (art.getNumber().equals(endArticle)){
-                        return;
+                    if (art.getNumber().equals(startArticle)) first = true;
+                    if (art.getNumber().equals(endArticle)) last = true;
+                }
+            }
+        }
+        if (first && last) {
+            System.out.println("\n" + this.toString().toUpperCase() + "  ARTYKUŁY Z ZAKRESU: " + startArticle + "-" + endArticle + "\n");
+            first = false;
+            for (Section sec : this.getList()) {
+                for (Chapter chap : sec.getList()) {
+                    for (Article art : chap.getList()) {
+                        if (art.getNumber().equals(startArticle)) {
+                            first = true;
+                        }
+                        if (first) {
+                            System.out.println(art.toString() + "\n" + art.getText());
+                            viewAllPointsFor(art);
+                        }
+                        if (art.getNumber().equals(endArticle)) {
+                            return;
+                        }
                     }
                 }
             }
+        }
+        else{
+            System.out.println("Enter correct range of articles");
         }
     }
 
